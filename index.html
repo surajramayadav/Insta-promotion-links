@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Stylr Apps | Widgets & Wallpapers</title>
+  <meta name="description" content="Free widgets and wallpaper apps for Android and iPhone.">
+  <meta name="theme-color" content="#14102b">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #14102b;
+      --card: rgba(255, 255, 255, .08);
+      --card-border: rgba(255, 255, 255, .16);
+      --text: #f6f3ff;
+      --muted: #b9b2d6;
+      --pink: #ff6fb5;
+      --violet: #8b5cf6;
+      --amber: #ffb547;
+      --android: #3ddc84;
+      --ios: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      padding: env(safe-area-inset-top, 0) 0 env(safe-area-inset-bottom, 0);
+    }
+
+    /* Drifting colour glows behind everything */
+    .glow {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .glow span {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: .55;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+
+    .glow span:nth-child(1) {
+      width: 320px;
+      height: 320px;
+      background: var(--violet);
+      top: -80px;
+      left: -90px;
+    }
+
+    .glow span:nth-child(2) {
+      width: 280px;
+      height: 280px;
+      background: var(--pink);
+      bottom: 8%;
+      right: -100px;
+      animation-delay: -5s;
+    }
+
+    .glow span:nth-child(3) {
+      width: 220px;
+      height: 220px;
+      background: var(--amber);
+      bottom: -60px;
+      left: 12%;
+      opacity: .35;
+      animation-delay: -9s;
+    }
+
+    @keyframes drift {
+      to {
+        transform: translate(40px, 60px) scale(1.15);
+      }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 40px 20px 48px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .logo {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 16px;
+      border-radius: 28px;
+      display: grid;
+      place-items: center;
+      font-size: 42px;
+      background: linear-gradient(135deg, var(--violet), var(--pink) 60%, var(--amber));
+      box-shadow: 0 10px 40px rgba(139, 92, 246, .5);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-8px) rotate(-3deg);
+      }
+    }
+
+    h1 {
+      font-family: "Bricolage Grotesque", system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      letter-spacing: -.02em;
+    }
+
+    .tag {
+      color: var(--muted);
+      margin-top: 6px;
+      font-size: 1rem;
+    }
+
+    .handle {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--card-border);
+      background: var(--card);
+    }
+
+    .apps {
+      display: grid;
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 16px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      transform: translateY(24px);
+      animation: rise .6s cubic-bezier(.2, .8, .2, 1) forwards;
+      animation-delay: calc(var(--i) * 120ms + 200ms);
+    }
+
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .top {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .icon {
+      flex: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      background: var(--grad);
+    }
+
+    .icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .top h2 {
+      font-family: "Bricolage Grotesque", system-ui, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .top p {
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+
+    .stores {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .stores.single {
+      grid-template-columns: 1fr;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .95rem;
+      color: #111;
+      background: var(--ios);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .btn.android {
+      background: var(--android);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(255, 255, 255, .2);
+    }
+
+    .btn:active {
+      transform: scale(.97);
+    }
+
+    .btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .btn.pick {
+      animation: pulse 2.2s ease-out 1.4s 2;
+    }
+
+    /* nudges the right store for this phone */
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, .6);
+      }
+
+      100% {
+        box-shadow: 0 0 0 16px rgba(255, 255, 255, 0);
+      }
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--amber);
+      outline-offset: 3px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: .85rem;
+      margin-top: 28px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .card {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <main>
+    <header>
+      <div class="logo" aria-hidden="true">✨</div>
+      <h1>Stylr Apps</h1>
+      <p class="tag">Free widgets &amp; wallpapers for your phone</p>
+      <a class="handle" href="https://www.instagram.com/stylrapps/">@stylrapps</a>
+    </header>
+
+    <section class="apps" id="apps" aria-label="Our apps"></section>
+
+    <footer>New wallpapers every day. Follow @stylrapps</footer>
+  </main>
+
+  <script>
+    /* ====== EDIT HERE: add, remove or reorder your apps ======
+       android / ios: paste the store URL, or leave "" to hide that button.
+       image: optional icon URL (leave "" to use the emoji). */
+    const APPS = [
+      {
+        name: "Ganpati Wallpaper",
+        desc: "Daily HD Ganpati Bappa wallpapers for your lock screen.",
+        emoji: "🙏", image: "", grad: "linear-gradient(135deg,#ff9a3c,#ff4d6d)",
+        android: "https://play.google.com/store/apps/details?id=com.ganpatiwallpaper",
+        ios: "https://apps.apple.com/in/app/ganpati-wallpaper/id6800812429"
+      },
+      {
+        name: "Color Widgets Pro",
+        desc: "Beautiful home screen widgets and wallpapers.",
+        emoji: "🎨", image: "", grad: "linear-gradient(135deg,#8b5cf6,#38bdf8)",
+        android: "PASTE_PLAY_STORE_LINK_HERE",
+        ios: ""
+      },
+      {
+        name: "Depth Wallpaper",
+        desc: "Lock screen wallpapers with a 3D depth effect.",
+        emoji: "🌌", image: "", grad: "linear-gradient(135deg,#14b8a6,#6366f1)",
+        android: "",
+        ios: ""
+      }
+    ];
+
+    const ua = navigator.userAgent;
+    const isIOS = /iPhone|iPad|iPod/i.test(ua);
+    const isAndroid = /Android/i.test(ua);
+
+    const icons = {
+      android: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2.5v19c0 .4.4.6.7.4L20.5 12 3.7 2.1c-.3-.2-.7 0-.7.4zM5 5l8 7-8 7V5zm13.6 7L15 15.3 12.6 13l2.4-2.3L18.600 12z"/></svg>',
+      ios: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.500 2-3.700 2.100-3.800-1.200-1.700-3-1.900-3.600-2-1.500-.2-3 .9-3.800.9s-2-.9-3.300-.9c-1.700 0-3.300 1-4.100 2.500-1.800 3.100-.5 7.600 1.200 10.100.8 1.200 1.800 2.600 3.100 2.500 1.200 0 1.700-.8 3.200-.8s1.900.8 3.200.8 2.200-1.200 3-2.400c.9-1.400 1.300-2.700 1.300-2.800-.1 0-2.300-.9-2.300-3.600zM14 5.100c.7-.8 1.100-1.900 1-3-1 0-2.100.7-2.800 1.500-.6.700-1.200 1.900-1 3 1.100.1 2.100-.6 2.800-1.500z"/></svg>'
+    };
+
+    const valid = u => u && /^https?:\/\//.test(u);
+    const root = document.getElementById("apps");
+
+    APPS.forEach((app, i) => {
+      const stores = [];
+      if (valid(app.android)) stores.push({ k: "android", label: "Android", url: app.android });
+      if (valid(app.ios)) stores.push({ k: "ios", label: "iPhone", url: app.ios });
+      if (!stores.length) return;                       // hide apps with no links yet
+      if (isIOS) stores.sort(a => (a.k === "ios" ? -1 : 1));
+
+      const card = document.createElement("article");
+      card.className = "card";
+      card.style.setProperty("--i", i);
+
+      const icon = app.image
+        ? `<img src="${app.image}" alt="" loading="lazy">`
+        : app.emoji;
+
+      card.innerHTML = `
+      <div class="top">
+        <div class="icon" style="--grad:${app.grad}">${icon}</div>
+        <div><h2></h2><p></p></div>
+      </div>
+      <div class="stores ${stores.length === 1 ? "single" : ""}"></div>`;
+      card.querySelector("h2").textContent = app.name;
+      card.querySelector("p").textContent = app.desc;
+
+      const wrap = card.querySelector(".stores");
+      stores.forEach(s => {
+        const a = document.createElement("a");
+        const mine = (s.k === "android" && isAndroid) || (s.k === "ios" && isIOS);
+        a.className = `btn ${s.k}${mine ? " pick" : ""}`;
+        a.href = s.url;
+        a.rel = "noopener";
+        a.innerHTML = `${icons[s.k]}<span>${s.label}</span>`;
+        wrap.appendChild(a);
+      });
+      root.appendChild(card);
+    });
+  </script>
+</body>
+
+</html>
